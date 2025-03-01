@@ -1,3 +1,5 @@
+import Game_1.BrickBreaker;
+
 import java.util.*;
 
 public class Main {
@@ -16,6 +18,8 @@ public class Main {
 
             switch (input){
                 case 1:
+                    BrickBreaker brickBreaker = new BrickBreaker();
+                    brickBreaker.init();
                     break;
                 case 2:
                     break;
