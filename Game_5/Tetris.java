@@ -1,4 +1,11 @@
 package Game_5;
 
-public class Tetris {
+import utils.Game;
+
+public class Tetris implements Game {
+
+    @Override
+    public void init() {
+
+    }
 }

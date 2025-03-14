@@ -1,4 +1,11 @@
 package Game_7;
 
-public class StarshipDefender {
+import utils.Game;
+
+public class StarshipDefender implements Game {
+
+    @Override
+    public void init() {
+
+    }
 }

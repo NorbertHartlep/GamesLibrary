@@ -1,4 +1,11 @@
 package Game_3;
 
-public class PacMan {
+import utils.Game;
+
+public class PacMan implements Game {
+
+    @Override
+    public void init() {
+
+    }
 }

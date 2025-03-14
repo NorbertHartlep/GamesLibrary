@@ -1,26 +1,29 @@
 import Game_1.BrickBreaker;
 import Game_2.Snake;
+import Game_3.PacMan;
+import Game_4.Puzzle;
+import Game_5.Tetris;
+import Game_6.MoveTheBalls;
+import Game_7.StarshipDefender;
 import utils.Game;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
-public class Main{
-
+public class Main {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
-            System.out.println("Choose game by pressing button.");
-            System.out.println("utils.Game 1: Brick Breaker");
-            System.out.println("utils.Game 2: Snake");
-            System.out.println("utils.Game 3: Pac-Man");
-            System.out.println("utils.Game 4: Puzzle");
-            System.out.println("utils.Game 5: Tetris");
-            System.out.println("utils.Game 6: Move the Balls");
-            System.out.println("utils.Game 7: Starship Defender");
-
+        boolean run = true;
+        while(run) {
+            printMenu();
             int input = scanner.nextInt();
-
             switch (input) {
+                case 0:
+                    run = false;
+                    System.out.println("Koniec programu.");
+                    break;
                 case 1:
                     startGame(new BrickBreaker());
                     break;
@@ -28,19 +31,76 @@ public class Main{
                     startGame(new Snake());
                     break;
                 case 3:
+                    startGame(new PacMan());
                     break;
                 case 4:
+                    startGame(new Puzzle());
                     break;
                 case 5:
+                    startGame(new Tetris());
                     break;
                 case 6:
+                    startGame(new MoveTheBalls());
                     break;
                 case 7:
+                    startGame(new StarshipDefender());
                     break;
+                default:
+                    System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
             }
         }
+    }
+
+    private static void printMenu() {
+        System.out.println("Wybierz grę:");
+        System.out.println("1: Brick Breaker");
+        System.out.println("2: Snake");
+        System.out.println("3: Pac-Man");
+        System.out.println("4: Puzzle");
+        System.out.println("5: Tetris");
+        System.out.println("6: Move the Balls");
+        System.out.println("7: Starship Defender");
+        System.out.println("0: Wyjście");
+    }
+
+    private static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
     private static void startGame(Game game) {
         game.init();
+
+        // Find current game window
+        JFrame gameFrame = null;
+        for (Frame frame : Frame.getFrames()) {
+            if (frame instanceof JFrame && frame.isDisplayable()) {
+                gameFrame = (JFrame) frame;
+                break;
+            }
+        }
+
+        if (gameFrame != null) {
+            final Object lock = new Object();
+            // Listener notifying about close of the window
+            gameFrame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    synchronized (lock) {
+                        lock.notify();
+                    }
+                }
+            });
+            // block main thread untill the game is closed
+            synchronized (lock) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        //clear console after closing game
+        clearConsole();
     }
 }

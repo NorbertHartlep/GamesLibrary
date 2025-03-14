@@ -1,4 +1,11 @@
 package Game_4;
 
-public class Puzzle {
+import utils.Game;
+
+public class Puzzle implements Game {
+
+    @Override
+    public void init() {
+
+    }
 }
