@@ -100,7 +100,6 @@ public class Main {
                 }
             }
         }
-        //clear console after closing game
         clearConsole();
     }
 }

@@ -11,7 +11,7 @@ public class Puzzle extends Frame implements Game, ActionListener {
 
     Button b1,b2,b3,b4,b5,b6,b7,b8,b9;
 
-    Puzzle(){
+    public Puzzle(){
         super("Puzzle Game");
         b1 = new Button("1");
         b1.setBounds(50,100,40,40);
