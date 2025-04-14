@@ -3,8 +3,8 @@ import Game_2.Snake;
 import Game_3.PacMan;
 import Game_4.Puzzle;
 import Game_5.Tetris;
-import Game_6.MoveTheBalls;
-import Game_7.StarshipDefender;
+import Game_6.com.MoveTheBalls;
+import Game_7.cam.StarshipDefender;
 import utils.Game;
 
 import javax.swing.*;
@@ -22,7 +22,7 @@ public class Main {
             switch (input) {
                 case 0:
                     run = false;
-                    System.out.println("Koniec programu.");
+                    System.out.println("End of the program.");
                     break;
                 case 1:
                     startGame(new BrickBreaker());
@@ -46,13 +46,13 @@ public class Main {
                     startGame(new StarshipDefender());
                     break;
                 default:
-                    System.out.println("Nieprawidłowy wybór. Spróbuj ponownie.");
+                    System.out.println("Wrong choice. Try again please.");
             }
         }
     }
 
     private static void printMenu() {
-        System.out.println("Wybierz grę:");
+        System.out.println("Choose your game:");
         System.out.println("1: Brick Breaker");
         System.out.println("2: Snake");
         System.out.println("3: Pac-Man");
@@ -60,7 +60,7 @@ public class Main {
         System.out.println("5: Tetris");
         System.out.println("6: Move the Balls");
         System.out.println("7: Starship Defender");
-        System.out.println("0: Wyjście");
+        System.out.println("0: Exit");
     }
 
     private static void clearConsole() {
